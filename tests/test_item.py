@@ -6,7 +6,7 @@ def item_fixture():
     """
     Фикстура для тестов
     """
-    return Item("Смартфон", 10000, 20)
+    return Item('Смартфон', 10000, 20)
 
 def test_item_init(item_fixture):
     """
@@ -41,3 +41,11 @@ def test_instantiate_from_csv():
     Проверяем кол-во записей по товарам
     """
     assert len(Item.all) == 3
+
+def test_repr(item_fixture):
+    """Тест метода репр"""
+    assert repr(item_fixture) == "Item('Смартфон', 10000, 20)"
+
+def test_str(item_fixture):
+    """Тест метода стр"""
+    assert str(item_fixture) == 'Смартфон'
