@@ -1,5 +1,5 @@
 import pytest
-from src.item import Item
+from src.item import Item, InstantiateCSVError
 from src.phone import Phone
 
 @pytest.fixture
@@ -65,4 +65,11 @@ def test_add_and_radd_phone_and_item():
     item1 = Item("Смартфон", 10000, 20)
     assert item1 + phone1 == 25
 
+def test_instantiate_from_csv_file_not_found():
+    with pytest.raises(FileNotFoundError):
+        Item.instantiate_from_csv('src/items.csv')
+
+def test_instantiate_from_csv_file_broken():
+    with pytest.raises(InstantiateCSVError):
+        Item.instantiate_from_csv("../src/items_failed.csv")
 
